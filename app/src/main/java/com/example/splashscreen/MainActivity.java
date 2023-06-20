@@ -7,20 +7,43 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.widget.Button;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
     private static int MIN_DISTANCE = 150;
     private float x1,x2,y1,y2;
     private GestureDetector gestureDetector;
+    Button OD;
+    Button TD;
+    TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        OD = findViewById(R.id.OD);
+        TD = findViewById(R.id.TD);
+
+        //create an object textToSpeech and adding features to it
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if (i != tts.ERROR) {
+                    // chose language
+                    tts.setLanguage(Locale.ENGLISH);
+                    tts.speak(OD.getText().toString(), tts.QUEUE_ADD,null);
+                    tts.speak(TD.getText().toString(), tts.QUEUE_ADD,null);
+                }
+            }
+        });
 
         //initialize gesturedetector
         this.gestureDetector = new GestureDetector(MainActivity.this, this);

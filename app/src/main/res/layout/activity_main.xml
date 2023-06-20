@@ -49,7 +49,7 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/TS"
+        android:id="@+id/TD"
         android:layout_width="317dp"
         android:layout_height="194dp"
         android:layout_gravity="center"
