@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             @Override
             public void onInit(int i) {
                 if (i != tts.ERROR) {
-                    // chose language
+                    // ch0ose language
                     tts.setLanguage(Locale.ENGLISH);
                     tts.speak(OD.getText().toString(), tts.QUEUE_ADD,null);
                     tts.speak(TD.getText().toString(), tts.QUEUE_ADD,null);
